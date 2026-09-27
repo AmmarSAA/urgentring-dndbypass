@@ -30,6 +30,7 @@ fun DashboardScreen(
     onOpenPermissions: () -> Unit,
     onOpenDebugLog: () -> Unit,
     onOpenHelpFeedback: () -> Unit,
+    onOpenDonate: () -> Unit,
     viewModel: DashboardViewModel = viewModel()
 ) {
     val featureEnabled by viewModel.featureEnabled.collectAsState()
@@ -75,6 +76,9 @@ fun DashboardScreen(
             }
             Button(onClick = onOpenHelpFeedback, modifier = Modifier.fillMaxWidth()) {
                 Text("Help & feedback")
+            }
+            Button(onClick = onOpenDonate, modifier = Modifier.fillMaxWidth()) {
+                Text("Donate now")
             }
         }
     }
