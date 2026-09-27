@@ -69,7 +69,7 @@ class FullScreenCallNotifier(private val context: Context) {
             val notification = NotificationCompat.Builder(context, CHANNEL_ID)
                 .setContentTitle("Urgent call")
                 .setContentText(callerDisplayName ?: callerNumber ?: "Unknown caller")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setCategory(NotificationCompat.CATEGORY_CALL)
                 .setFullScreenIntent(fullScreenPendingIntent, true)
