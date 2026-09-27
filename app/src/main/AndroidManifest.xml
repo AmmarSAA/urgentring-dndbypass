@@ -1,0 +1,65 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Lets the user pick contacts when creating a caller rule. -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- Status notifications on Android 13+. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Lets us keep the call-screening service alive on aggressive OEM battery managers. -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <!-- Lets us raise the alarm stream volume for an urgent call. -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <!-- Lets the incoming-call screen launch over the lock screen. Android 14+ also
+         requires the user to grant this via Settings; see PermissionsHelper. -->
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <!-- Lets the incoming-call screen's Answer/Decline buttons act on the real call. -->
+    <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
+    <!-- Lets us detect when the call ends so the alert can stop immediately instead of
+         always waiting out a fixed timer. -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:name=".UrgentRingApplication"
+        android:allowBackup="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.UrgentRing">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.UrgentRing">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+          The system Telecom framework binds to this service for every incoming call
+          once the user grants us the ROLE_CALL_SCREENING role. It must respond quickly
+          in onScreenCall(), before the call is allowed to ring.
+        -->
+        <service
+            android:name=".screening.UrgentCallScreeningService"
+            android:permission="android.permission.BIND_SCREENING_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.telecom.CallScreeningService" />
+            </intent-filter>
+        </service>
+
+        <!--
+          Launched via a full-screen notification intent when a call crosses the
+          threshold, so it can show over the lock screen like a real incoming call.
+          Not shown in Recents since it's a transient alert, not a normal app screen.
+        -->
+        <activity
+            android:name=".screening.IncomingUrgentCallActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.UrgentRing" />
+
+    </application>
+</manifest>

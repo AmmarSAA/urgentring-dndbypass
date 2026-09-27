@@ -1,0 +1,4 @@
+<resources>
+    <!-- Minimal platform theme; all real theming happens in Compose (see ui/theme). -->
+    <style name="Theme.UrgentRing" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>
