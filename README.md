@@ -96,3 +96,8 @@ for the full per-call decision path.
 Real-device testing matters too: OEM battery managers (MIUI, Samsung, etc.) are the
 most likely source of production reliability issues, since they can kill background
 processes despite the call-screening role's system binding.
+
+## License
+
+MIT — see [LICENSE](LICENSE). Reusing this code requires keeping the copyright notice
+and license text, which credits the original author.
