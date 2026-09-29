@@ -1,8 +1,26 @@
 # Urgent Ring (Android MVP)
 
+[![License: MIT](https://img.shields.io/github/license/AmmarSAA/urgentring-dndbypass)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/AmmarSAA/urgentring-dndbypass?style=social)](https://github.com/AmmarSAA/urgentring-dndbypass/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/AmmarSAA/urgentring-dndbypass?style=social)](https://github.com/AmmarSAA/urgentring-dndbypass/fork)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/ammarsaa)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-F16061?style=flat&logo=ko-fi&logoColor=white)](https://ko-fi.com/ammarsaa)
+
 Lets specific callers — or anyone who calls repeatedly — ring through even when the
 phone is on silent or Do Not Disturb, by counting calls per caller in a rolling time
 window and forcing the ringer on once a threshold is crossed.
+
+### Like this project?
+
+If Urgent Ring is useful to you, the easiest ways to support it:
+
+- ⭐ **Star** the repo — it's free, and it's the single biggest thing that helps
+  other people find this project.
+- 🍴 **Fork** it — adapt it, build on it, use it as a base for your own idea.
+- ☕ **Donate** — [Buy Me a Coffee](https://buymeacoffee.com/ammarsaa) or
+  [Ko-fi](https://ko-fi.com/ammarsaa) if you'd like to support development directly.
+- 📣 **Share** it with anyone who's ever missed an urgent call because their phone
+  was on silent.
 
 See the platform feasibility notes below before assuming this behavior is portable to
 iOS — it is **not**, by design of the platform, and this repo is Android-only for that
@@ -101,3 +119,13 @@ processes despite the call-screening role's system binding.
 
 MIT — see [LICENSE](LICENSE). Reusing this code requires keeping the copyright notice
 and license text, which credits the original author.
+
+## Author
+
+Built by **Ammar S.** ([@AmmarSAA](https://github.com/AmmarSAA)).
+
+Questions, feature requests, or feedback: **contact@ammarsaa.com**, or use the app's
+own Help & Feedback / Donate screens.
+
+If you build something on top of this, I'd genuinely like to hear about it — open an
+issue, or just email me.
