@@ -11,10 +11,17 @@ private val Context.dataStore by preferencesDataStore(name = "urgent_ring_settin
 
 class SettingsRepository(private val context: Context) {
     private val featureEnabledKey = booleanPreferencesKey("feature_enabled")
+    private val onboardingCompletedKey = booleanPreferencesKey("onboarding_completed")
 
     val featureEnabled: Flow<Boolean> = context.dataStore.data.map { it[featureEnabledKey] ?: false }
 
     suspend fun setFeatureEnabled(enabled: Boolean) {
         context.dataStore.edit { it[featureEnabledKey] = enabled }
+    }
+
+    val onboardingCompleted: Flow<Boolean> = context.dataStore.data.map { it[onboardingCompletedKey] ?: false }
+
+    suspend fun setOnboardingCompleted(completed: Boolean) {
+        context.dataStore.edit { it[onboardingCompletedKey] = completed }
     }
 }

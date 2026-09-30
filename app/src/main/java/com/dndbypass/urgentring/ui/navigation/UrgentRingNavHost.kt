@@ -1,20 +1,27 @@
 package com.dndbypass.urgentring.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.dndbypass.urgentring.data.SettingsRepository
 import com.dndbypass.urgentring.ui.activitylog.ActivityLogScreen
 import com.dndbypass.urgentring.ui.dashboard.DashboardScreen
 import com.dndbypass.urgentring.ui.debuglog.DebugLogScreen
 import com.dndbypass.urgentring.ui.donate.DonateScreen
 import com.dndbypass.urgentring.ui.help.HelpFeedbackScreen
+import com.dndbypass.urgentring.ui.onboarding.OnboardingScreen
 import com.dndbypass.urgentring.ui.permissions.PermissionsScreen
 import com.dndbypass.urgentring.ui.rules.EditRuleScreen
 import com.dndbypass.urgentring.ui.rules.RulesListScreen
 
 object Routes {
+    const val ONBOARDING = "onboarding"
     const val DASHBOARD = "dashboard"
     const val RULES = "rules"
     const val EDIT_RULE = "rules/edit/{ruleKey}"
@@ -29,7 +36,27 @@ object Routes {
 
 @Composable
 fun UrgentRingNavHost(navController: NavHostController = rememberNavController()) {
-    NavHost(navController = navController, startDestination = Routes.DASHBOARD) {
+    val context = LocalContext.current
+    val settingsRepository = remember(context) { SettingsRepository(context) }
+    val onboardingCompleted by settingsRepository.onboardingCompleted.collectAsState(initial = null)
+
+    // Wait for the real value before picking a start destination, so a first-time user
+    // never flashes the Dashboard before landing on Onboarding.
+    val startDestination = onboardingCompleted ?: return
+
+    NavHost(
+        navController = navController,
+        startDestination = if (startDestination) Routes.DASHBOARD else Routes.ONBOARDING
+    ) {
+        composable(Routes.ONBOARDING) {
+            OnboardingScreen(
+                onFinished = {
+                    navController.navigate(Routes.DASHBOARD) {
+                        popUpTo(Routes.ONBOARDING) { inclusive = true }
+                    }
+                }
+            )
+        }
         composable(Routes.DASHBOARD) {
             DashboardScreen(
                 onOpenRules = { navController.navigate(Routes.RULES) },
