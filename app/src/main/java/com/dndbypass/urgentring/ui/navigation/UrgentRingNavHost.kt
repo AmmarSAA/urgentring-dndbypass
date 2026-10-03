@@ -15,6 +15,7 @@ import com.dndbypass.urgentring.ui.dashboard.DashboardScreen
 import com.dndbypass.urgentring.ui.debuglog.DebugLogScreen
 import com.dndbypass.urgentring.ui.donate.DonateScreen
 import com.dndbypass.urgentring.ui.help.HelpFeedbackScreen
+import com.dndbypass.urgentring.ui.locationshare.LocationShareScreen
 import com.dndbypass.urgentring.ui.onboarding.OnboardingScreen
 import com.dndbypass.urgentring.ui.permissions.PermissionsScreen
 import com.dndbypass.urgentring.ui.rules.EditRuleScreen
@@ -30,6 +31,7 @@ object Routes {
     const val DEBUG_LOG = "debug_log"
     const val HELP_FEEDBACK = "help_feedback"
     const val DONATE = "donate"
+    const val LOCATION_SHARE = "location_share"
 
     fun editRule(ruleKey: String) = "rules/edit/$ruleKey"
 }
@@ -62,6 +64,7 @@ fun UrgentRingNavHost(navController: NavHostController = rememberNavController()
                 onOpenRules = { navController.navigate(Routes.RULES) },
                 onOpenActivityLog = { navController.navigate(Routes.ACTIVITY_LOG) },
                 onOpenPermissions = { navController.navigate(Routes.PERMISSIONS) },
+                onOpenLocationShare = { navController.navigate(Routes.LOCATION_SHARE) },
                 onOpenDebugLog = { navController.navigate(Routes.DEBUG_LOG) },
                 onOpenHelpFeedback = { navController.navigate(Routes.HELP_FEEDBACK) },
                 onOpenDonate = { navController.navigate(Routes.DONATE) }
@@ -83,6 +86,9 @@ fun UrgentRingNavHost(navController: NavHostController = rememberNavController()
         }
         composable(Routes.PERMISSIONS) {
             PermissionsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Routes.LOCATION_SHARE) {
+            LocationShareScreen(onBack = { navController.popBackStack() })
         }
         composable(Routes.DEBUG_LOG) {
             DebugLogScreen(onBack = { navController.popBackStack() })

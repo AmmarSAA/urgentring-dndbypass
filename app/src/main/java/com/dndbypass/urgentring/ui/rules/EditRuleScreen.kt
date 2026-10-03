@@ -143,7 +143,7 @@ fun EditRuleScreen(ruleKey: String, onDone: () -> Unit, viewModel: EditRuleViewM
     }
 }
 
-private fun resolveContactPhoneNumber(context: Context, contactUri: Uri): Pair<String?, String?> = try {
+internal fun resolveContactPhoneNumber(context: Context, contactUri: Uri): Pair<String?, String?> = try {
     resolveContactPhoneNumberUnsafe(context, contactUri)
 } catch (e: SecurityException) {
     null to null

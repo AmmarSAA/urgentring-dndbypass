@@ -9,6 +9,7 @@ import com.dndbypass.urgentring.data.DEFAULT_RULE_KEY
 import com.dndbypass.urgentring.data.DebugLogger
 import com.dndbypass.urgentring.data.PhoneNumberNormalizer
 import com.dndbypass.urgentring.data.SettingsRepository
+import com.dndbypass.urgentring.locationshare.LocationShareManager
 import com.dndbypass.urgentring.permissions.PermissionsHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -37,6 +38,7 @@ class UrgentCallScreeningService : CallScreeningService() {
     private lateinit var settingsRepository: SettingsRepository
     private lateinit var fullScreenCallNotifier: FullScreenCallNotifier
     private lateinit var callStateWatcher: CallStateWatcher
+    private lateinit var locationShareManager: LocationShareManager
     private var restoreJob: Job? = null
 
     override fun onCreate() {
@@ -47,6 +49,7 @@ class UrgentCallScreeningService : CallScreeningService() {
         settingsRepository = SettingsRepository(applicationContext)
         fullScreenCallNotifier = FullScreenCallNotifier(applicationContext)
         callStateWatcher = CallStateWatcher(applicationContext)
+        locationShareManager = LocationShareManager(applicationContext)
         DebugLogger.log(applicationContext, "Service created (fresh process or first bind)")
     }
 
@@ -64,6 +67,12 @@ class UrgentCallScreeningService : CallScreeningService() {
 
         serviceScope.launch {
             try {
+                // Independent of the urgent-ring toggle below, and isolated so a failure here
+                // can never affect the call or the urgent alert.
+                runCatching { locationShareManager.watchIfEligible(normalized) }.onFailure {
+                    DebugLogger.log(applicationContext, "LocationShare watch ERROR ${it.javaClass.simpleName}: ${it.message}")
+                }
+
                 val featureOn = settingsRepository.featureEnabled.first()
                 DebugLogger.log(applicationContext, "featureEnabled=$featureOn")
                 if (featureOn) {

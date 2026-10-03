@@ -16,6 +16,13 @@
     <!-- Lets us detect when the call ends so the alert can stop immediately instead of
          always waiting out a fixed timer. -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- Optional "share my location on missed calls" feature (off until enabled in settings):
+         find the user's position, including when the app is closed, and text it to the
+         callers they selected. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:name=".UrgentRingApplication"

@@ -14,7 +14,7 @@
 </head>
 <body>
 <h1>Privacy Policy for Urgent Ring</h1>
-<p class="updated">Last updated: September 27, 2026</p>
+<p class="updated">Last updated: October 3, 2026</p>
 
 <p>Urgent Ring ("the app") is developed by Ammar S. ("we", "us"). This policy explains
 what the app accesses on your device and how that information is handled.</p>
@@ -30,15 +30,35 @@ what the app accesses on your device and how that information is handled.</p>
     Answer or Decline on the app's own incoming-call screen.</li>
 </ul>
 
+<h2>Optional: sharing your location after a missed call</h2>
+<p>This feature is <strong>off by default</strong> and only works if you turn it on in the app's
+&ldquo;Location sharing&rdquo; settings and add specific phone numbers there. If you do:</p>
+<ul>
+  <li><strong>Location</strong> (<code>ACCESS_FINE_LOCATION</code>, <code>ACCESS_COARSE_LOCATION</code>,
+    <code>ACCESS_BACKGROUND_LOCATION</code>) &mdash; when you miss a call from a number you selected, the app
+    reads your current location once. Background access is needed because missed calls happen while the app
+    is closed.</li>
+  <li><strong>Text messages</strong> (<code>SEND_SMS</code>) &mdash; the app sends that caller a text message
+    containing a map link to your location. Standard carrier SMS charges may apply. The app never reads your
+    text messages.</li>
+  <li><strong>WhatsApp</strong> &mdash; instead of sending anything itself, the app can show a notification;
+    if you tap it, WhatsApp opens with the message pre-filled and you choose whether to send it.</li>
+</ul>
+<p>Your location is sent only to the numbers you selected, at most once per 15 minutes per number, and is not
+sent to us or to anyone else. It is not stored by the app after it is sent. You can turn the feature off or
+remove a number at any time.</p>
+
 <h2>Where that data goes</h2>
-<p><strong>Nowhere but your device.</strong> Urgent Ring has no server or backend. Call history,
-caller rules, and contact lookups are stored only in a local database on your phone.
-The app contains no analytics SDK and no advertising SDK, and never transmits your
-calls, contacts, or numbers anywhere.</p>
+<p><strong>Nowhere but your device, with one exception that you control.</strong> Urgent Ring has no server or
+backend. Call history, caller rules, and contact lookups are stored only in a local database on your phone.
+The app contains no analytics SDK and no advertising SDK, and never transmits your calls, contacts, or
+numbers anywhere. The only information that leaves your phone is the location message described above, sent
+by SMS or WhatsApp to the numbers you chose, and only if you turned that feature on.</p>
 
 <h2>Sharing</h2>
-<p>We do not sell, rent, or share any data with third parties, because none of it ever
-leaves your device.</p>
+<p>We do not sell, rent, or share any data with third parties. We never receive your data. The location
+message above goes directly from your phone to the person you selected, through your mobile carrier or
+WhatsApp, which have their own privacy policies.</p>
 
 <h2>Deleting your data</h2>
 <p>Uninstalling the app removes all of its locally stored data. You can also clear it at

@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.HelpOutline
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.NotificationsActive
 import androidx.compose.material.icons.filled.PersonSearch
 import androidx.compose.material.icons.filled.Shield
@@ -44,6 +45,7 @@ fun DashboardScreen(
     onOpenRules: () -> Unit,
     onOpenActivityLog: () -> Unit,
     onOpenPermissions: () -> Unit,
+    onOpenLocationShare: () -> Unit,
     onOpenDebugLog: () -> Unit,
     onOpenHelpFeedback: () -> Unit,
     onOpenDonate: () -> Unit,
@@ -88,6 +90,7 @@ fun DashboardScreen(
             DashboardSection(title = "Manage") {
                 DashboardRow(Icons.Filled.PersonSearch, "Manage caller rules", onOpenRules)
                 DashboardRow(Icons.Filled.History, "View call activity", onOpenActivityLog)
+                DashboardRow(Icons.Filled.LocationOn, "Location sharing on missed calls", onOpenLocationShare)
                 DashboardRow(Icons.Filled.Shield, "Permissions setup", onOpenPermissions)
             }
 
